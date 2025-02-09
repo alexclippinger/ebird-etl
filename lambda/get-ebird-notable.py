@@ -151,11 +151,12 @@ def dq_checks():
 def publish_parquet_prod():
     queryStart = athena.start_query_execution(
         QueryString=f"""
-        CREATE TABLE {PROD_TABLE_NAME} WITH
-            (external_location='{PROD_S3_BUCKET}/{TIMESTAMP}/',
+        CREATE TABLE {PROD_TABLE_NAME} WITH (
+            external_location='{PROD_S3_BUCKET}/{TIMESTAMP}/',
             format='PARQUET',
             write_compression='SNAPPY',
-            partitioned_by = ARRAY['year_month'])
+            partitioned_by = ARRAY['year_month']
+        )
         AS
         SELECT * FROM "{DATABASE_NAME}"."{DEV_TABLE_NAME}";
         """,
