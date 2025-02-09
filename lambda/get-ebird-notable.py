@@ -27,7 +27,7 @@ DEV_S3_BUCKET = "s3://ebird-etl/ebird-parquet-dev"
 PROD_S3_BUCKET = "s3://ebird-etl/ebird-parquet-prod"
 
 RESPONSE_STATUSES = ["FAILED", "SUCCEEDED", "CANCELLED"]
-TIMESTAMP = datetime.now().strftime("%Y%m%d_%H%M%S")
+TIMESTAMP = datetime.now(datetime.timezone.utc).strftime("%Y%m%d_%H%M%S")
 
 
 def get_ebird_notable():
